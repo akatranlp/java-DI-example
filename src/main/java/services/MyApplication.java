@@ -10,12 +10,10 @@ import javax.annotation.Resource;
  */
 @Component
 public class MyApplication {
-    Logger logger;
-
     // Field Injection
     // Autowired sucht sich die passende Injection selbst heraus
     @Autowired
-    Logger logger2;
+    Logger logger;
 
     // über die Ressource wird die Instanz anhand des Namens aus der Configuration geholt
     @Resource(name="bean1")
@@ -26,15 +24,17 @@ public class MyApplication {
     @Autowired
     Database bean2;
 
-    Database db3;
-
     // Constructor Injection
+    Logger logger2;
+
     @Autowired
     public MyApplication(Logger logger){
-        this.logger = logger;
+        this.logger2 = logger;
     }
 
     // Method Injection
+    Database db3;
+
     @Autowired
     public void setDb3(Database bean3){
         db3 = bean3;
@@ -42,8 +42,11 @@ public class MyApplication {
 
     public void run() {
         // Hier testen wir inwiefern verschiedene Objekte erzeugt werden
-        logger.log(db1.getOne());
-        logger2.log(bean2.getOne());
-        logger.log(db3.getOne());
+        logger.log(db1.toString());
+        logger2.log(bean2.toString());
+        logger.log(db3.toString());
+
+        System.out.println(logger.toString());
+        System.out.println(logger2.toString());
     }
 }

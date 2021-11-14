@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class Logger {
     public void log(String msg) {
-        System.out.println(this.toString() + " - " + msg);
+        System.out.println("LOG: " + msg);
     }
 }
